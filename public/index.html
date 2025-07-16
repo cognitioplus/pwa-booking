@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cognitio+ | Book Mental Health Services</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Book culturally sensitive mental health services with dynamic pricing and subsidy options."/>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <style>
+    :root {
+      --primary-color: #a451a9;
+      --accent-color: #FFB81C;
+      --bg-color: #fff;
+      --text-color: #222;
+      --font-sans: 'Montserrat', Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    input, select, textarea {
+      padding: 0.75rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .price-box {
+      background-color: #f9f9f9;
+      padding: 1rem;
+      border-left: 4px solid var(--primary-color);
+      margin-top: 1rem;
+    }
+
+    .consent {
+      margin-top: 1rem;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+
+    button:hover {
+      background-color: #8b3fa3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cognitio+</h1>
+    <p>AI-Powered Digital Therapy & Community-Based Mental Health Care in the Philippines</p>
+
+    <form id="bookingForm">
+      
+      <!-- Consent & Policy Agreement -->
+      <section>
+        <h2>Consent & Policy Agreement</h2>
+        <label class="consent">
+          <input type="checkbox" required>
+          I understand and consent to the collection, use, and processing of my personal data for booking purposes, in compliance with the
+          <a href=" https://cognitio-plus.aiwaapp.live/privacy-policy " target="_blank">Privacy Policy</a> and
+          <a href="https://cognitio-plus.aiwaapp.live/terms-of-service " target="_blank">Terms of Service</a>.
+        </label>
+      
+      </section>
+      <section>
+        <h2>I. Personal Information</h2>
+        <label>
+          Full Name
+          <input type="text" name="fullName" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
+        <label>
+          Contact Number
+          <input type="text" name="contact" required>
+        </label>
+        <label>
+          Date of Birth
+          <input type="date" name="dob">
+        </label>
+        <label>
+          Address
+          <input type="text" name="address" required>
+        </label>
+      </section>
+
+
+      <section>
+        <h2>II. User Type</h2>
+        <label>
+          Select User Type
+          <select id="userType" required>
+            <option value="">-- Select One --</option>
+            <option value="individual">Individual</option>
+            <option value="community-org">Community Organization</option>
+            <option value="school">School / University</option>
+            <option value="government">LGU / Government Agency</option>
+            <option value="corporate">Corporate / Business</option>
+            <option value="researcher">Researcher / Academic</option>
+          </select>
+        </label>
+      </section>
+ 
+
+      <section>
+        <h2>III. Vulnerable Population segment</h2>
+        <label>
+          Do you identify as part of any vulnerable population?
+          <select required>
+            <option value="none">None</option>
+            <option value="pwd">PWD</option>
+            <option value="lgbtq">LGBTQ+</option>
+            <option value="indigenous">Indigenous</option>
+            <option value="frontliner">Frontliner / Caregiver</option>
+            <option value="student">Student / Youth</option>
+          </select>
+        </label>
+      </section>
+
+      <section>
+        <h2>IV-A Choose Your Service Category</h2>
+        <label>
+          Service Category
+          <select id="serviceCategory" required>
+            <option value="">-- Select One --</option>
+            <option value="online-individual">Online & Individual Solutions</option>
+            <option value="community-programs">Community-Based Mental Health Programs</option>
+            <option value="organizational-training">Organizational Trainings & Consultancy</option>
+            <option value="research-policy">Research & Policy Advisory</option>
+          </select>
+        </label>
+      </section>
+
+      <section id="subServiceSection">
+        <h2>Choose Your Sub-Services</h2>
+        <label>
+          <select id="subService" disabled required>
+            <option value="">Please select a service category first</option>
+          </select>
+        </label>
+      </section>
+
+      <section id="detailsSection">
+        <h2>Additional Details</h2>
+        <label>
+          Describe your needs or concerns:
+          <textarea rows="4" placeholder="e.g. stress, anxiety, resilience building, group support"></textarea>
+        </label>
+        <label>
+         Preferred Date:
+          <input type="date">
+        </label>
+        <label>
+         Preferred Time:
+          <input type="time">
+        </label>
+        <label>
+        Estimated Number of Participants (if applicable):
+          <input type="number" min="1" step="1">
+        </label>
+      </section>
+      
+      <section>
+        <h2>IV-B. Individual Professional Service Type</h2>
+        <label>
+          <select name="serviceType" required>
+            <option value="">Select Service</option>
+            <option value="teletherapy">Psychiatric Consultation</option>
+            <option value="in-person">Talk Therapy with Psychologist</option>
+            <option value="group">Specialist Psychosocial Support</option>
+            <option value="group">Specialist Psychosocial Recovery Support</option>
+            <option value="group">Specilaist Resilience Coaching</option>
+          </select>
+        </label>
+      </section>
+
+      <section>
+        <h2> Session Duration</h2>
+        <label>
+          Duration (minutes)
+          <input type="number" name="duration" min="30" max="180" step="10" value="60" required>
+        </label>
+      </section>
+
+      <section>
+        <h2>Appointment Date & Time</h2>
+        <label>
+          Date
+          <input type="date" name="date" required>
+        </label>
+        <label>
+          Time
+          <input type="time" name="time" required>
+        </label>
+      </section>
+
+      <section>
+        <h2>Your Concerns</h2>
+        <label>
+          Describe your concerns
+          <textarea name="concerns" rows="4" placeholder="e.g. stress, anxiety, relationships"></textarea>
+        </label>
+      </section>
+
+           <!-- Price Calculation -->
+      <section>
+        <h2>VI. Price Calculation</h2>
+        <p><strong>Base price:</strong> Varies by service type.</p>
+        <p><strong>Additional factors:</strong> Duration, number of participants, and subsidy eligibility.</p>
+        <div class="price-box">
+          <p><strong>Estimated Cost:</strong> <span id="calculatedPrice">To be determined</span></p>
+        </div>
+        <button type="submit">Submit Booking Request</button>
+      </section>
+    </form>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const serviceCategory = document.getElementById('serviceCategory');
+    const subService = document.getElementById('subService');
+    const userType = document.getElementById('userType');
+    const priceDisplay = document.getElementById('calculatedPrice');
+
+    // Mapping of service categories to sub-services
+    const subServices = {
+      "online-individual": [
+        { name: "Teletherapy - Video", basePrice: 899 },
+        { name: "E-Counseling - Chat", basePrice: 699 },
+        { name: "Resilience Navigator", basePrice: 0 },
+        { name: "Oasis: Mindfulness Sanctuary", basePrice: 0 },
+        { name: "Well-Be Stress Manager App", basePrice: 0 },
+        { name: "Gamified Learning Module", basePrice: 200 },
+        { name: "Psychoeducation Library Access", basePrice: 0 },
+      ],
+      "community-programs": [
+        { name: "Caring for the Carers (C4C)", basePrice: 5000 },
+        { name: "CareTalk Circles", basePrice: 3000 },
+        { name: "Indigenous Wellness Dialogues", basePrice: 7000 },
+        { name: "Substance Use Recovery Support", basePrice: 4000 },
+        { name: "Community Resilience Workshop", basePrice: 6000 },
+        { name: "Psychological First Aid (PFA) Training", basePrice: 8000 },
+      ],
+      "organizational-training": [
+        { name: "Mental Health Policy Co-Design", basePrice: 10000 },
+        { name: "PFA Certification", basePrice: 5000 },
+        { name: "Burnout Prevention Workshop", basePrice: 4000 },
+        { name: "Cultural Competence Training", basePrice: 4500 },
+        { name: "Case Management System Setup", basePrice: 7000 },
+        { name: "MH Integration into Emergency Plans", basePrice: 9000 },
+      ],
+      "research-policy": [
+        { name: "Mental Health Systems Audit", basePrice: 12000 },
+        { name: "Data Collection & Monitoring", basePrice: 8000 },
+        { name: "Behavioral Segmentation Analysis", basePrice: 6000 },
+        { name: "Program Impact Assessment", basePrice: 10000 },
+        { name: "Ethical AI Dashboard Setup", basePrice: 15000 },
+        { name: "Policy Implementation Planning", basePrice: 9000 },
+      ]
+    };
+
+    // Update sub-service dropdown based on category
+    serviceCategory.addEventListener("change", function () {
+      const selectedCategory = this.value;
+      subService.innerHTML = "<option value=''>Select Sub-Service</option>";
+      if (selectedCategory && subServices[selectedCategory]) {
+        subServices[selectedCategory].forEach(option => {
+          const opt = document.createElement("option");
+          opt.value = option.name;
+          opt.textContent = option.name;
+          opt.dataset.price = option.basePrice;
+          subService.appendChild(opt);
+        });
+        subService.disabled = false;
+      } else {
+        subService.disabled = true;
+      }
+    });
+
+    // Estimate price dynamically
+    subService.addEventListener("change", function () {
+      const selectedOption = this.options[this.selectedIndex];
+      const basePrice = parseFloat(selectedOption.dataset.price || 0);
+      priceDisplay.textContent = `₱${basePrice.toFixed(2)}`;
+    });
+
+    // Optional: Handle form submission
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Your booking request has been submitted!");
+    });
+  </script>
+</body>
+</html>
