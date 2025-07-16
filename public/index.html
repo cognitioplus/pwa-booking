@@ -11,9 +11,8 @@
 <body>
   <div class="container">
     <header>
-      <img src="/icons/icon-192x192.png" alt="Cognitio+ Logo" width="64" />
       <h1>Cognitio+</h1>
-      <p>AI-Powered Mental Health Services in the Philippines</p>
+      <p>AI-Powered Mental Health Services</p>
     </header>
 
     <form id="bookingForm">
@@ -21,35 +20,36 @@
       <section>
         <h2>Consent & Policy Agreement</h2>
         <label>
-          <input type="checkbox" required>
-          I agree to the <a href="https://cognitio-plus.aiwaapp.live/privacy-policy " target="_blank">Privacy Policy</a> and <a href="https://cognitio-plus.aiwaapp.live/terms-of-service " target="_blank">Terms of Service</a>.
+          <input type="checkbox" required> I agree to the <a href="https://cognitio-plus.aiwaapp.live/privacy-policy " target="_blank">Privacy Policy</a> and <a href="https://cognitio-plus.aiwaapp.live/terms-of-service " target="_blank">Terms of Service</a>.
         </label>
       </section>
 
       <!-- User Type -->
       <section>
-        <h2>I. Who Are You?</h2>
+        <h2>I. STAKEHOLDER CATEGORY</h2>
         <label>
           <select id="userType" name="userType" required>
-            <option value="">-- Select One --</option>
+            <option value="">-- Please select the category that best describes you --</option>
             <option value="individual">Individual</option>
-            <option value="community-org">Community Organization</option>
+            <option value="community-org">Civl Society Organization</option>
             <option value="school">School / University</option>
             <option value="government">LGU / Government Agency</option>
             <option value="corporate">Corporate / Business</option>
+            <option value="researcher">Mental Health Advocate</option>
             <option value="researcher">Researcher / Academic</option>
+            
           </select>
         </label>
       </section>
 
       <!-- Service Category -->
       <section>
-        <h2>II. Choose Your Service</h2>
+        <h2>II. SERVICE OR SOLUTION CATEGORY</h2>
         <label>
           <select id="serviceCategory" name="serviceCategory" required>
-            <option value="">-- Select One --</option>
+            <option value="">-- Select One Category--</option>
             <option value="online-individual">Online & Individual Solutions</option>
-            <option value="community-programs">Community-Based MH Programs</option>
+            <option value="community-programs">Community-Based Mental Health Programs</option>
             <option value="organizational-training">Organizational Trainings & Consultancy</option>
             <option value="research-policy">Research & Policy Advisory</option>
           </select>
@@ -58,7 +58,7 @@
 
       <!-- Sub-Service Options -->
       <section id="subServiceSection">
-        <h2>III. Choose Your Sub-Service</h2>
+        <h2>III. SERVICE TYPES</h2>
         <label>
           <select id="subService" name="subService" disabled required>
             <option value="">Please select a service category first</option>
@@ -91,7 +91,7 @@
 
       <!-- Vulnerable Segment -->
       <section>
-        <h2>V. Vulnerable Population segment</h2>
+        <h2>V. VULNERABLE POPULATION SEGMENT</h2>
         <label>
           Do you identify as part of any vulnerable population?
           <select name="vulnerableSegment" required>
@@ -107,8 +107,8 @@
 
       <!-- Price Calculation -->
       <section>
-        <h2>VI. Price Calculation</h2>
-        <p><strong>Base price:</strong> Varies by service type.</p>
+        <h2>VI. DYNAMIC PRICE CALCULATION</h2>
+        <p><strong>Base price:</strong> Varies by based on pricnciples of equity and accessibility.</p>
         <p><strong>Additional factors:</strong> Duration, number of participants, and subsidy eligibility.</p>
         <div class="price-box">
           <p><strong>Estimated Cost:</strong> <span id="calculatedPrice">To be determined</span></p>
