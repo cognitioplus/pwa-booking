@@ -12,6 +12,7 @@
     <header>
       <h1>Cognitio+</h1>
       <p>AI-Powered Mental Health Services</p>
+      <a href="https://cognitio-plus.aiwaapp.live/signup" target="_blank" style="float:right;margin-top:-40px;">Login / Signup</a>
     </header>
 
     <form id="bookingForm">
@@ -19,7 +20,7 @@
       <section>
         <h2>Consent & Policy Agreement</h2>
         <label>
-          <input type="checkbox" required> I agree to the <a href="https://cognitio-plus.aiwaapp.live/privacy-policy " target="_blank">Privacy Policy</a> and <a href="https://cognitio-plus.aiwaapp.live/terms-of-service " target="_blank">Terms of Service</a>.
+          <input type="checkbox" required> I agree to the <a href="https://cognitio-plus.aiwaapp.live/privacy-policy" target="_blank">Privacy Policy</a> and <a href="https://cognitio-plus.aiwaapp.live/terms-of-service" target="_blank">Terms of Service</a>.
         </label>
       </section>
 
@@ -36,7 +37,6 @@
             <option value="corporate">Corporate / Business</option>
             <option value="researcher">Mental Health Advocate</option>
             <option value="researcher">Researcher / Academic</option>
-            
           </select>
         </label>
       </section>
@@ -83,40 +83,138 @@
           </label>
           <label>
             Estimated Number of Participants (if applicable):
-            <input type="number" name="participants" min="1" step="1">
+            <input type="number" name="participants" min="1">
           </label>
         </div>
       </section>
 
-      <!-- Vulnerable Segment -->
+      <!-- Custom Plan/Package Section -->
       <section>
-        <h2>V. VULNERABLE POPULATION SEGMENT</h2>
+        <h2>V. Create Your Own Plan or Package <span style="font-size:0.8em;color:#888;">(Optional)</span></h2>
         <label>
-          Do you identify as part of any vulnerable population?
-          <select name="vulnerableSegment" required>
-            <option value="none">None</option>
-            <option value="pwd">PWD</option>
-            <option value="lgbtq">LGBTQ+</option>
-            <option value="indigenous">Indigenous</option>
-            <option value="frontliner">Frontliner / Caregiver</option>
-            <option value="student">Student / Youth</option>
-          </select>
+          Plan/Package Name:
+          <input type="text" id="customPlanName" name="customPlanName" placeholder="e.g. Wellness Retreat" />
+        </label>
+        <label>
+          Estimated Cost (PHP):
+          <input type="number" id="customPlanCost" name="customPlanCost" min="0" placeholder="e.g. 5000" />
+        </label>
+        <label>
+          Resources Needed:
+          <input type="text" id="customPlanResources" name="customPlanResources" placeholder="e.g. venue, facilitator, kits" />
+        </label>
+        <label>
+          Duration (hours or days):
+          <input type="text" id="customPlanDuration" name="customPlanDuration" placeholder="e.g. 2 days" />
+        </label>
+        <button type="button" id="previewCustomPlan" style="margin-top:10px;">Preview Custom Plan Summary</button>
+        <pre id="customPlanSummary" style="background:#f9f9f9;padding:10px;margin-top:10px;display:none;"></pre>
+      </section>
+
+      <!-- User Email for Confirmation -->
+      <section>
+        <h2>VI. Your Email</h2>
+        <label>
+          <input type="email" name="userEmail" id="userEmail" placeholder="Your email address" required>
         </label>
       </section>
 
-      <!-- Price Calculation -->
-      <section>
-        <h2>VI. DYNAMIC PRICE CALCULATION</h2>
-        <p><strong>Base price:</strong> Varies by based on pricnciples of equity and accessibility.</p>
-        <p><strong>Additional factors:</strong> Duration, number of participants, and subsidy eligibility.</p>
-        <div class="price-box">
-          <p><strong>Estimated Cost:</strong> <span id="calculatedPrice">To be determined</span></p>
-        </div>
-        <button type="submit">Submit Booking Request</button>
-      </section>
+      <button type="submit">Submit Booking</button>
     </form>
+    <div id="formSuccess" style="display:none;color:green;margin-top:1em;"></div>
+    <div id="formError" style="display:none;color:red;margin-top:1em;"></div>
+    <footer>
+      <p>For assistance: <a href="mailto:hello@cognitioplus.com">hello@cognitioplus.com</a> | <a href="tel:+639541986522">+63 954 198 6522</a></p>
+      <p>Dashboard: <a href="https://airtable.com/invite/l?inviteId=invL0Rcxy0Rlbs1Bc&inviteToken=a02d0f35c90a239e1eb02900f817787d07eeaac620a8a526a6a675a7ffddea00&utm_medium=email&utm_source=product_team&utm_content=transactional-alerts" target="_blank">View on Airtable</a></p>
+    </footer>
   </div>
+  <script>
+    // Service category and sub-service options logic (unchanged)
+    const subServiceOptions = {
+      "online-individual": ["Teletherapy", "Online Counseling", "Coaching Session"],
+      "community-programs": ["Community Workshop", "Psychoeducation Seminar", "Crisis Response"],
+      "organizational-training": ["Workplace Wellness Training", "Team Building", "Consultancy"],
+      "research-policy": ["Research Collaboration", "Policy Advisory"]
+    };
+    const serviceCategory = document.getElementById('serviceCategory');
+    const subService = document.getElementById('subService');
+    serviceCategory.addEventListener('change', function () {
+      const selected = this.value;
+      subService.innerHTML = "";
+      if (subServiceOptions[selected]) {
+        subService.disabled = false;
+        subServiceOptions[selected].forEach(opt => {
+          const o = document.createElement('option');
+          o.value = opt;
+          o.textContent = opt;
+          subService.appendChild(o);
+        });
+      } else {
+        subService.disabled = true;
+        const o = document.createElement('option');
+        o.value = "";
+        o.textContent = "Please select a service category first";
+        subService.appendChild(o);
+      }
+    });
 
-  <script src="script.js"></script>
+    // Custom Plan Preview
+    document.getElementById('previewCustomPlan').addEventListener('click', function() {
+      const name = document.getElementById('customPlanName').value;
+      const cost = document.getElementById('customPlanCost').value;
+      const resources = document.getElementById('customPlanResources').value;
+      const duration = document.getElementById('customPlanDuration').value;
+      let summary = '';
+      if (name || cost || resources || duration) {
+        summary = `Plan/Package: ${name || '-'}\nCost: ${cost ? '₱'+cost : '-'}\nResources: ${resources || '-'}\nDuration: ${duration || '-'}`;
+      } else {
+        summary = 'No custom plan/package details provided.';
+      }
+      document.getElementById('customPlanSummary').style.display = 'block';
+      document.getElementById('customPlanSummary').textContent = summary;
+    });
+
+    // Booking form submission
+    document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      document.getElementById('formSuccess').style.display = 'none';
+      document.getElementById('formError').style.display = 'none';
+
+      const data = {
+        userType: document.getElementById('userType').value,
+        serviceCategory: document.getElementById('serviceCategory').value,
+        subService: document.getElementById('subService').value,
+        concerns: this.concerns.value,
+        date: this.date.value,
+        time: this.time.value,
+        participants: this.participants.value,
+        customPlanName: document.getElementById('customPlanName').value,
+        customPlanCost: document.getElementById('customPlanCost').value,
+        customPlanResources: document.getElementById('customPlanResources').value,
+        customPlanDuration: document.getElementById('customPlanDuration').value,
+        userEmail: document.getElementById('userEmail').value
+      };
+
+      try {
+        const resp = await fetch('/api/book-custom-plan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await resp.json();
+        if (result.status === 'success') {
+          document.getElementById('formSuccess').textContent = 'Booking submitted! You will receive a confirmation email shortly.';
+          document.getElementById('formSuccess').style.display = 'block';
+          this.reset();
+          document.getElementById('customPlanSummary').style.display = 'none';
+        } else {
+          throw new Error(result.message || 'Unknown error');
+        }
+      } catch (err) {
+        document.getElementById('formError').textContent = 'There was an error submitting your booking. Please try again later.';
+        document.getElementById('formError').style.display = 'block';
+      }
+    });
+  </script>
 </body>
 </html>
