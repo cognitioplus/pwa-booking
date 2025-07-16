@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cognitio+ PWA Booking App – Security Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; background: #f9f9f9; color: #222; }
+    h1, h2, h3 { color: #17447f; }
+    .section { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; margin-bottom: 2rem; padding: 1.5rem; }
+    code, pre { background: #f3f3f3; border-radius: 3px; padding: 2px 6px; }
+    .risk { color: #b80000; font-weight: bold; }
+    .ok { color: #208020; font-weight: bold; }
+    ul { margin-top: 0.3em; }
+  </style>
+</head>
+<body>
+  <h1>Security Report</h1>
+  <h2>Cognitio+ PWA Booking App (<code>cognitioplus/pwa-booking</code>)</h2>
+  <p><strong>Report Date:</strong> 2025-07-16</p>
+
+  <div class="section">
+    <h3>1. General Overview</h3>
+    <ul>
+      <li><strong>Repository Purpose:</strong> Booking platform for mental health services, implemented as a PWA.</li>
+      <li><strong>Main Technologies:</strong> HTML, CSS, JavaScript.</li>
+      <li><strong>Entry Point:</strong> <code>public/index.html</code></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>2. Key Findings</h3>
+    <ul>
+      <li><span class="ok">✔</span> No inline JavaScript detected in <code>index.html</code>; all scripts are loaded via <code>script.js</code>.</li>
+      <li><span class="risk">!</span> No Content Security Policy (CSP) is set in <code>index.html</code>. This increases risk of XSS attacks.</li>
+      <li><span class="ok">✔</span> All external resources (favicon, manifest, CSS, JS) are loaded using relative paths.</li>
+      <li><span class="risk">!</span> User input is collected by forms, but no evidence of input validation or sanitization in the HTML itself. (Requires review of <code>script.js</code> and back-end handling.)</li>
+      <li><span class="ok">✔</span> Privacy Policy and Terms of Service links are provided and require user agreement.</li>
+      <li><span class="risk">!</span> No HTTPS enforcement or secure cookie usage can be determined from HTML alone.</li>
+      <li><span class="risk">!</span> No CSRF tokens or anti-forgery mechanisms visible for form submissions.</li>
+      <li><span class="ok">✔</span> No sensitive information or secrets present in the HTML.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>3. HTML & JavaScript Security Practices</h3>
+    <ul>
+      <li><strong>Content Security Policy (CSP):</strong>
+        <ul>
+          <li class="risk">No CSP is defined. <br> <span>Recommendation: Add a <code>&lt;meta http-equiv="Content-Security-Policy" ...&gt;</code> tag to mitigate XSS risks.</span></li>
+        </ul>
+      </li>
+      <li><strong>Input Validation:</strong>
+        <ul>
+          <li>Form fields use <code>required</code> attribute, but no pattern or type validation for email or text fields.</li>
+          <li class="risk">Sanitization of inputs should occur server-side as well as client-side (review needed in <code>script.js</code>).</li>
+        </ul>
+      </li>
+      <li><strong>External Scripts:</strong>
+        <ul>
+          <li>Only <code>script.js</code> is loaded. <span class="ok">✔</span> No third-party JS libraries detected in HTML.</li>
+        </ul>
+      </li>
+      <li><strong>Service Worker (PWA):</strong>
+        <ul>
+          <li>Not visible in <code>index.html</code>—recommend reviewing service worker registration and caching logic for security best practices (e.g., avoiding caching sensitive data).</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>4. Form & Data Handling</h3>
+    <ul>
+      <li><strong>Booking Form:</strong>
+        <ul>
+          <li>Collects personal and sensitive data (e.g., health concerns, vulnerable segment, preferred date/time).</li>
+          <li class="risk">No indication of encryption in transit (HTML cannot enforce HTTPS).</li>
+          <li>No visible anti-bot (e.g., CAPTCHA) or CSRF protection.</li>
+        </ul>
+      </li>
+      <li><strong>Data Privacy:</strong>
+        <ul>
+          <li>Privacy statement is visible; make sure consent is logged in backend.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>5. Recommendations</h3>
+    <ul>
+      <li><strong>Add a Content Security Policy (CSP):</strong>
+        <pre>&lt;meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;"&gt;</pre>
+      </li>
+      <li><strong>Enforce HTTPS:</strong> Ensure the application is only served over HTTPS, including all API and form submission endpoints.</li>
+      <li><strong>Input Validation:</strong> Validate and sanitize all user input on both client and server sides.</li>
+      <li><strong>CSRF Protection:</strong> Implement CSRF tokens for all form submissions to prevent cross-site request forgery.</li>
+      <li><strong>Session Security:</strong> Use secure, HttpOnly cookies for any authentication/session handling.</li>
+      <li><strong>Review Service Worker:</strong> Ensure the service worker does not cache sensitive data and follows the latest PWA security guidelines.</li>
+      <li><strong>Dependency Management:</strong> Regularly update dependencies and audit for vulnerabilities (for both client and any server-side code).</li>
+      <li><strong>Security Headers:</strong> Set additional HTTP headers (Strict-Transport-Security, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, etc.) via server configuration.</li>
+      <li><strong>Monitor & Log:</strong> Implement activity logging and security monitoring for unauthorized access attempts.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>6. Additional Notes</h3>
+    <ul>
+      <li>This report is based on the provided <code>public/index.html</code> only. For a full assessment, review <code>script.js</code>, service worker code, server-side API endpoints, and hosting configuration.</li>
+      <li>User data privacy is critical given the mental health context. Ensure compliance with relevant data protection regulations (e.g., Philippine Data Privacy Act, GDPR if applicable).</li>
+    </ul>
+  </div>
+
+  <footer style="margin-top:2em; text-align:center; color:#666; font-size:14px;">
+    &copy; 2025 Cognitio+ Security Audit – Generated by GitHub Copilot Chat Assistant
+  </footer>
+</body>
+</html>
