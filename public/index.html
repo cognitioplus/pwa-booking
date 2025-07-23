@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cognitio+ | AI-Driven Booking Services</title>
+  <title>Cognitio+ | AI-Driven Service Customization</title>
   <link rel="manifest" href="/manifest.json" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -11,13 +11,12 @@
   <div class="container">
     <header>
       <h1>Cognitio+</h1>
-      <p>AI-Driven Booking Services</p>
+      <p>Priority-Driven Services Customization</p>
       <a href="https://cognitio-plus.aiwaapp.live/signup" target="_blank" style="float:right;margin-top:-40px;">Login / Signup</a>
     </header>
 
     <form id="bookingForm">
       <!-- Consent & Policy Agreement -->
-      
       <section>
         <h2>Consent & Privacy Policy Agreement</h2>
         <p>
@@ -153,6 +152,34 @@
       </section>
 
       <!-- Additional Details -->
+
+            <section>
+        <h2>IV. VULNERABLE POPULATION SEGEMNT INVOLVED</h2>
+        <label>
+          <select id="vulnerablepopulation" name="vulnerablePopulation" optional>
+            <option value="">- Please select population segment involved -</option>
+            <option value="youth">Student / School Leavers</option>
+            <option value="solo-parents">Solo Parents</option>
+            <option value="pwd">Persons with (dis)Abilities</option>
+            <option value="women">Women from Low Income Families</option>
+            <option value="Victims">Victims of Disasters</option>
+            <option value="elderly">Senior Citizens</option>
+            <option value="farmers">Low Income Farmers/Fisherfolks</option>
+            <option value="lgbtq">LGBTQ+</option>
+          </select>
+        </label>
+      </section>
+            <section>
+        <h2>V. AREA TYPE</h2>
+        <label>
+          <select id="areaType" name="userType" required>
+            <option value="">- Please select type of area you are in --</option>
+            <option value="youth">Highly Urbanized City</option>
+            <option value="solo-parents">Non-HUC</option>
+          </select>
+        </label>
+      </section>
+      
       <section>
         <h2>IV. Additional Details</h2>
         <label>
@@ -191,7 +218,7 @@
           <input type="text" id="customPlanResources" name="customPlanResources" placeholder="e.g. venue, facilitator, kits" />
         </label>
         <label>
-          Duration (hours or days):
+          Duration (number of days or hours):
           <input type="text" id="customPlanDuration" name="customPlanDuration" placeholder="e.g. 2 days" />
         </label>
         <button type="button" id="previewCustomPlan" style="margin-top:10px;">Preview Custom Plan Summary</button>
@@ -206,7 +233,7 @@
         </label>
       </section>
 
-      <button type="submit">Submit Booking</button>
+      <button type="submit">SUBMIT</button>
     </form>
     <div id="formSuccess" style="display:none;color:green;margin-top:1em;"></div>
     <div id="formError" style="display:none;color:red;margin-top:1em;"></div>
@@ -240,6 +267,7 @@
   </footer>
 
   </div>
+      <script> link="script.js"</script>
   <script>
     // Service category and sub-service options logic (unchanged)
     const subServiceOptions = {
