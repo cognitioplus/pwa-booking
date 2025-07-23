@@ -11,17 +11,20 @@ const subServices = {
     { name: "E-Counseling - Chat", basePrice: 699 },
     { name: "Resilience Navigator", basePrice: 0 },
     { name: "Oasis: Mindfulness Sanctuary", basePrice: 0 },
-    { name: "Well-Be Stress Manager App", basePrice: 0 },
-    { name: "Gamified Learning Module", basePrice: 200 },
-    { name: "Psychoeducation Library Access", basePrice: 0 }
+    { name: "Well-Be: ress Manager App", basePrice: 0 },
+    { name: "Smart Emotional Tracker and Journal", basePrice: 0 },
+    { name: "Cognitio+ AI", basePrice: 0 },
+    { name: "ResilienceOne App", basePrice: 0 },
+    { name: "Personal Resiiience Ebook", basePrice: 700}
   ],
   "community-programs": [
     { name: "Caring for the Carers (C4C)", basePrice: 5000 },
+    { name: "Substane Abuse Prevention and Support", basePrice: 3000 },
     { name: "CareTalk Circles", basePrice: 3500 },
     { name: "Indigenous Wellness Dialogues", basePrice: 7000 },
     { name: "Substance Use Recovery Support", basePrice: 5000 },
     { name: "Community Resilience Workshop", basePrice: 7000 },
-    { name: "PFA Training", basePrice: 8000 }
+    { name: "Psychological First Aid Training", basePrice: 8000 }
   ],
   "organizational-training": [
     { name: "Mental Health Policy Co-Design", basePrice: 15000 },
@@ -29,7 +32,7 @@ const subServices = {
     { name: "Burnout Prevention Workshop", basePrice: 7000 },
     { name: "Cultural Competence Training", basePrice: 4500 },
     { name: "Case Management System Setup", basePrice: 7000 },
-    { name: "MH Integration into Emergency Plans", basePrice: 9000 }
+    { name: "Mental Health Integration into Emergency Plans", basePrice: 9000 }
   ],
   "research-policy": [
     { name: "Mental Health Systems Audit", basePrice: 12000 },
